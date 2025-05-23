@@ -1,5 +1,3 @@
-# football-stats-final-project
-
 # Football Statistics Project
 
 In this project, you will develop a football statistics management system as a Spring Boot web application that 
