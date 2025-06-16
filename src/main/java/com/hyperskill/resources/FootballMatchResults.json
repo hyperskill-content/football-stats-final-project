@@ -1,0 +1,93 @@
+{
+  "matches": [
+    {
+      "homeTeam": "Manchester City",
+      "awayTeam": "Liverpool",
+      "homeScore": 0,
+      "awayScore": 0,
+      "matchDate": "2023-10-15T15:00:00",
+      "goalScorers": []
+    },
+    {
+      "homeTeam": "Real Madrid",
+      "awayTeam": "FC Barcelona",
+      "homeScore": 3,
+      "awayScore": 1,
+      "matchDate": "2023-09-25T20:45:00",
+      "goalScorers": [
+        {
+          "firstName": "Vinicius",
+          "lastName": "Junior",
+          "teamName": "Real Madrid",
+          "goals": 2
+        },
+        {
+          "firstName": "Karim",
+          "lastName": "Benzema",
+          "teamName": "Real Madrid",
+          "goals": 1
+        },
+        {
+          "firstName": "Robert",
+          "lastName": "Lewandowski",
+          "teamName": "FC Barcelona",
+          "goals": 1
+        }
+      ]
+    },
+    {
+      "homeTeam": "Bayern Munich",
+      "awayTeam": "Ajax",
+      "homeScore": 4,
+      "awayScore": 0,
+      "matchDate": "2023-09-20T18:30:00",
+      "goalScorers": [
+        {
+          "firstName": "Harry",
+          "lastName": "Kane",
+          "teamName": "Bayern Munich",
+          "goals": 2
+        },
+        {
+          "firstName": "Thomas",
+          "lastName": "Muller",
+          "teamName": "Bayern Munich",
+          "goals": 1
+        },
+        {
+          "firstName": "Leon",
+          "lastName": "Goretzka",
+          "teamName": "Bayern Munich",
+          "goals": 1
+        }
+      ]
+    },
+    {
+      "homeTeam": "Liverpool",
+      "awayTeam": "Inter Milan",
+      "homeScore": 2,
+      "awayScore": 1,
+      "matchDate": "2023-10-05T19:00:00",
+      "goalScorers": [
+        {
+          "firstName": "Mohamed",
+          "lastName": "Salah",
+          "teamName": "Liverpool",
+          "goals": 1
+        },
+        {
+          "firstName": "Darwin",
+          "lastName": "Nunez",
+          "teamName": "Liverpool",
+          "goals": 1
+        },
+        {
+          "firstName": "Lautaro",
+          "lastName": "Martinez",
+          "teamName": "Inter Milan",
+          "goals": 1
+        }
+      ]
+    }
+  ]
+}
