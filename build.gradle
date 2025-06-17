@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'com.hyperskill.Main'  // Make sure this is your main class path
+}
+
+group = 'com.hyperskill'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'mysql:mysql-connector-java:8.0.33' // MySQL JDBC driver
+
+    // Jackson for JSON processing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+
+    // JUnit for testing
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Mockito for testing
+    testImplementation 'org.mockito:mockito-core:5.8.0' // Latest version
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0' // JUnit 5
+}
+
+test {
+    useJUnitPlatform()
+}
