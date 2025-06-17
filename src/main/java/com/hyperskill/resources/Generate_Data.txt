@@ -1,0 +1,127 @@
+// Manchester City
+new Player("Ederson", "Moraes", "Manchester City"));
+new Player("Ruben", "Dias", "Manchester City"));
+new Player("Joao", "Cancelo", "Manchester City"));
+new Player("Rodri", "Hernandez", "Manchester City"));
+new Player("Kevin", "De Bruyne", "Manchester City"));
+new Player("Phil", "Foden", "Manchester City"));
+new Player("Jack", "Grealish", "Manchester City"));
+new Player("Ilkay", "Gundogan", "Manchester City"));
+new Player("Erling", "Haaland", "Manchester City"));
+new Player("Riyad", "Mahrez", "Manchester City"));
+new Player("Bernardo", "Silva", "Manchester City"));
+
+new Coach("Ruben", "Amorim", "Manchester City"));
+new Team("Manchester City", manchesterCityCoach, manchesterCityPlayers);
+
+// Liverpool
+new Player("Alisson", "Becker", "Liverpool"));
+new Player("Virgil", "van Dijk", "Liverpool"));
+new Player("Andrew", "Robertson", "Liverpool"));
+new Player("Trent", "Alexander-Arnold", "Liverpool"));
+new Player("Fabinho", "Tavares", "Liverpool"));
+new Player("Thiago", "Alcantara", "Liverpool"));
+new Player("Mohamed", "Salah", "Liverpool"));
+new Player("Luis", "Diaz", "Liverpool"));
+new Player("Cody", "Gakpo", "Liverpool"));
+new Player("Darwin", "Nunez", "Liverpool"));
+new Player("Diogo", "Jota", "Liverpool"));
+
+new Coach("Arne", "Slot", "Liverpool"));
+new Team("Liverpool", liverpoolCoach, liverpoolPlayers);
+
+// Real Madrid
+new Player("Thibaut", "Courtois", "Real Madrid"));
+new Player("Eder", "Militao", "Real Madrid"));
+new Player("David", "Alaba", "Real Madrid"));
+new Player("Ferland", "Mendy", "Real Madrid"));
+new Player("Luka", "Modric", "Real Madrid"));
+new Player("Toni", "Kroos", "Real Madrid"));
+new Player("Federico", "Valverde", "Real Madrid"));
+new Player("Vinicius", "Junior", "Real Madrid"));
+new Player("Rodrygo", "Goes", "Real Madrid"));
+new Player("Karim", "Benzema", "Real Madrid"));
+new Player("Marco", "Asensio", "Real Madrid"));
+
+new Coach("Carlo", "Ancelotti", "Real Madrid"));
+new Team("Real Madrid", realMadridCoach, realMadridPlayers);
+
+// FC Barcelona
+new Player("Marc-André", "ter Stegen", "FC Barcelona"));
+new Player("Jules", "Kounde", "FC Barcelona"));
+new Player("Ronald", "Araujo", "FC Barcelona"));
+new Player("Andreas", "Christensen", "FC Barcelona"));
+new Player("Alejandro", "Balde", "FC Barcelona"));
+new Player("Sergio", "Busquets", "FC Barcelona"));
+new Player("Frenkie", "de Jong", "FC Barcelona"));
+new Player("Gavi", "Paez", "FC Barcelona"));
+new Player("Pedri", "Gonzalez", "FC Barcelona"));
+new Player("Ousmane", "Dembele", "FC Barcelona"));
+new Player("Robert", "Lewandowski", "FC Barcelona"));
+
+new Coach("Hansi", "Flick", "FC Barcelona"));
+new Team("FC Barcelona", barcelonaCoach, barcelonaPlayers);
+
+// Bayern Munich
+new Player("Manuel", "Neuer", "Bayern Munich"));
+new Player("Matthijs", "de Ligt", "Bayern Munich"));
+new Player("Lucas", "Hernandez", "Bayern Munich"));
+new Player("Alphonso", "Davies", "Bayern Munich"));
+new Player("Joshua", "Kimmich", "Bayern Munich"));
+new Player("Leon", "Goretzka", "Bayern Munich"));
+new Player("Thomas", "Muller", "Bayern Munich"));
+new Player("Kingsley", "Coman", "Bayern Munich"));
+new Player("Sadio", "Mane", "Bayern Munich"));
+new Player("Serge", "Gnabry", "Bayern Munich"));
+new Player("Harry", "Kane", "Bayern Munich"));
+
+new Coach("Vincent", "Kompany", "Bayern Munich"));
+new Team("Bayern Munich", bayernMunichCoach, bayernMunichPlayers);
+
+// Ajax
+new Player("Pascal", "Struijk", "Ajax"));
+new Player("Jurrien", "Timber", "Ajax"));
+new Player("Daley", "Blind", "Ajax"));
+new Player("Edson", "Alvarez", "Ajax"));
+new Player("Davy", "Klaassen", "Ajax"));
+new Player("Steven", "Bergwijn", "Ajax"));
+new Player("Antony", "Martinez", "Ajax"));
+new Player("Mohammed", "Kudus", "Ajax"));
+new Player("Brian", "Brovets", "Ajax"));
+new Player("Lassina", "Traore", "Ajax"));
+new Player("Kasper", "Dolberg", "Ajax"));
+
+new Coach("Francesco", "Farioli", "Ajax"));
+new Team("Ajax", ajaxCoach, ajaxPlayers);
+
+// Inter Milan
+new Player("Samir", "Handanovic", "Inter Milan"));
+new Player("Milan", "Skriniar", "Inter Milan"));
+new Player("Alessandro", "Bastoni", "Inter Milan"));
+new Player("Denzel", "Dumfries", "Inter Milan"));
+new Player("Nicolo", "Barella", "Inter Milan"));
+new Player("Marcelo", "Brozovic", "Inter Milan"));
+new Player("Hakan", "Calhanoglu", "Inter Milan"));
+new Player("Lautaro", "Martinez", "Inter Milan"));
+new Player("Romelu", "Lukaku", "Inter Milan"));
+new Player("Joaquin", "Correa", "Inter Milan"));
+new Player("Edin", "Dzeko", "Inter Milan"));
+
+new Coach("Simone", "Inzagh", "Inter Milan"));
+new Team("Inter Milan", interMilanCoach, interMilanPlayers);
+
+Paris Saint-Germain
+new Player("Gianluigi", "Donnarumma", "Paris Saint-Germain"));
+new Player("Achraf", "Hakimi", "Paris Saint-Germain"));
+new Player("Marquinhos", "Correa", "Paris Saint-Germain"));
+new Player("Sergio", "Ramos", "Paris Saint-Germain"));
+new Player("Presnel", "Kimpembe", "Paris Saint-Germain"));
+new Player("Marco", "Verratti", "Paris Saint-Germain"));
+new Player("Vitinha", "Machado", "Paris Saint-Germain"));
+new Player("Neymar", "Jr", "Paris Saint-Germain"));
+new Player("Kylian", "Mbappe", "Paris Saint-Germain"));
+new Player("Lionel", "Messi", "Paris Saint-Germain"));
+new Player("Fabian", "Ruiz", "Paris Saint-Germain"));
+
+new Coach("Luis", "Enrique", "Paris Saint-Germain"));
+new Team("Paris Saint-Germain", parisSaintGermainCoach, parisSaintGermainPlayers);
