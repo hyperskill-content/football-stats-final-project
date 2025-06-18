@@ -204,7 +204,7 @@ public class CoachManager {
         }
         System.out.println(index + ". Cancel");
 
-        System.out.println("Enter the number of the coach:");
+        System.out.print("Enter the number of the coach:");
         int selection = 0;
         boolean validInput = false;
 
@@ -217,10 +217,10 @@ public class CoachManager {
                 } else if (selection > 0 && selection < index) {
                     validInput = true;
                 } else {
-                    System.out.println("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
                 }
             } else {
-                System.out.println("Invalid input. Please enter a number:");
+                System.out.print("Invalid input. Please enter a number:");
                 scanner.next(); // Clear invalid input
             }
         }
