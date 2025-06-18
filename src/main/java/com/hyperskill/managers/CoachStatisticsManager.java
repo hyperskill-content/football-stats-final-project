@@ -68,7 +68,7 @@ public class CoachStatisticsManager {
 
         displayCoachesList(coaches);
 
-        System.out.println("Enter the number of the coach:");
+        System.out.print("Enter the number of the coach:");
         int selection = 0;
         boolean validInput = false;
 
@@ -78,10 +78,10 @@ public class CoachStatisticsManager {
                 if (selection > 0 && selection <= coaches.size()) {
                     validInput = true;
                 } else {
-                    System.out.println("Invalid selection. Please enter a number between 1 and " + coaches.size() + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + coaches.size() + ":");
                 }
             } else {
-                System.out.println("Invalid input. Please enter a number:");
+                System.out.print("Invalid input. Please enter a number:");
                 scanner.next(); // Clear invalid input
             }
         }

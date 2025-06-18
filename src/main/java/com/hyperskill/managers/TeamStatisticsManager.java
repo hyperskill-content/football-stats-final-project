@@ -176,7 +176,7 @@ public class TeamStatisticsManager {
 
         displayTeamsList(teams);
 
-        System.out.println("Enter the number of the team:");
+        System.out.print("Enter the number of the team:");
         int selection = 0;
         boolean validInput = false;
 
@@ -186,10 +186,10 @@ public class TeamStatisticsManager {
                 if (selection > 0 && selection <= teams.size()) {
                     validInput = true;
                 } else {
-                    System.out.println("Invalid selection. Please enter a number between 1 and " + teams.size() + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + teams.size() + ":");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number:");
+                System.out.print("Invalid input. Please enter a number:");
             }
         }
 

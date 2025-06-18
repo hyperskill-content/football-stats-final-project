@@ -70,7 +70,7 @@ public class PlayerStatisticsManager {
 
         displayPlayersList(players);
 
-        System.out.println("Enter the number of the player:");
+        System.out.print("Enter the number of the player:");
         int selection = 0;
         boolean validInput = false;
 
@@ -80,10 +80,10 @@ public class PlayerStatisticsManager {
                 if (selection > 0 && selection <= players.size()) {
                     validInput = true;
                 } else {
-                    System.out.println("Invalid selection. Please enter a number between 1 and " + players.size() + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + players.size() + ":");
                 }
             } else {
-                System.out.println("Invalid input. Please enter a number:");
+                System.out.print("Invalid input. Please enter a number:");
                 scanner.next(); // Clear invalid input
             }
         }
