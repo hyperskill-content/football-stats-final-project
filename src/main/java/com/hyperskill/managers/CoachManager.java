@@ -4,7 +4,9 @@ import com.hyperskill.FootballStatisticsDB;
 import com.hyperskill.data_models.Coach;
 import com.hyperskill.factory.CoachFactory;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -182,15 +184,49 @@ public class CoachManager {
     }
 
     private Coach findCoachByNameUI() {
-        System.out.print("Enter first name: ");
-        String firstName = scanner.nextLine();
+        Collection<Coach> coaches = getAllCoaches();
 
-        System.out.print("Enter last name: ");
-        String lastName = scanner.nextLine();
+        if (coaches.isEmpty()) {
+            System.out.println("No coaches available. Please add a coach first.");
+            return null;
+        }
 
-        Optional<Coach> coachOptional = findCoachByName(firstName, lastName);
+        System.out.println("\n===== Available Coaches =====");
+        int index = 1;
+        List<Coach> coachList = new ArrayList<>(coaches);
 
-        return coachOptional.orElse(null);
+        for (Coach coach : coachList) {
+            System.out.printf("%d. %s %s (Team: %s)\n", 
+                    index++, 
+                    coach.getFirstName(), 
+                    coach.getLastName(), 
+                    coach.getTeamName());
+        }
+        System.out.println(index + ". Cancel");
+
+        System.out.println("Enter the number of the coach:");
+        int selection = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            if (scanner.hasNextInt()) {
+                selection = scanner.nextInt();
+                if (selection == index) {
+                    scanner.nextLine(); // Clear the newline
+                    return null;
+                } else if (selection > 0 && selection < index) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number:");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        scanner.nextLine(); // Clear the newline
+
+        return coachList.get(selection - 1);
     }
 
     /**
