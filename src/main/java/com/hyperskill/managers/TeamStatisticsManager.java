@@ -5,6 +5,8 @@ import com.hyperskill.data_models.Team;
 import com.hyperskill.statistics.TeamStatistics;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TeamStatisticsManager {
@@ -125,11 +127,8 @@ public class TeamStatisticsManager {
     }
 
     private void showStatisticsByTeam() {
-        System.out.println("Enter the team name: ");
-        String input = scanner.nextLine().trim();
-        Team team = FootballStatisticsDB.getTeamByName(input);
+        Team team = findTeamByNumber();
         if (team == null) {
-            System.out.println("Invalid input. Return to the menu.");
             return;
         }
 
@@ -143,11 +142,8 @@ public class TeamStatisticsManager {
     }
 
     private void showStatisticsByTeamPerYear() {
-        System.out.println("Enter the team name: ");
-        String input = scanner.nextLine().trim();
-        Team team = FootballStatisticsDB.getTeamByName(input);
+        Team team = findTeamByNumber();
         if (team == null) {
-            System.out.println("Invalid input. Return to the menu.");
             return;
         }
 
@@ -169,6 +165,43 @@ public class TeamStatisticsManager {
         System.out.printf("In %d the percentage of Wins = %.2f%%\n", year, TeamStatistics.percentageWinsPerYear(team, year));
         System.out.printf("In %d the percentage of Loses = %.2f%%\n", year, TeamStatistics.percentageLossesPerYear(team, year));
         System.out.printf("In %d the percentage of Draws = %.2f%%\n", year, TeamStatistics.percentageDrawsPerYear(team, year));
+    }
+
+    private Team findTeamByNumber() {
+        List<Team> teams = new ArrayList<>(FootballStatisticsDB.getTeams());
+        if (teams.isEmpty()) {
+            System.out.println("No teams found in the database.");
+            return null;
+        }
+
+        displayTeamsList(teams);
+
+        System.out.println("Enter the number of the team:");
+        int selection = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                selection = Integer.parseInt(scanner.nextLine());
+                if (selection > 0 && selection <= teams.size()) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid selection. Please enter a number between 1 and " + teams.size() + ":");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number:");
+            }
+        }
+
+        return teams.get(selection - 1);
+    }
+
+    private void displayTeamsList(List<Team> teams) {
+        System.out.println("\n===== Available Teams =====");
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            System.out.printf("%d. %s\n", i + 1, team.getName());
+        }
     }
 
     private void teamStatsMenu() {
