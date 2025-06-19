@@ -80,7 +80,7 @@ public class CoachManager {
     private void updateCoachInfo() {
         System.out.println("\n--- Update Coach Information ---");
 
-        Coach coach = findCoachByNameUI();
+        Coach coach = selectCoachFromList();
         if (coach == null) {
             System.out.println("Coach not found.");
             return;
@@ -119,7 +119,7 @@ public class CoachManager {
     private void deleteCoach() {
         System.out.println("\n--- Delete Coach ---");
 
-        Coach coach = findCoachByNameUI();
+        Coach coach = selectCoachFromList();
         if (coach == null) {
             System.out.println("Coach not found.");
             return;
@@ -144,7 +144,7 @@ public class CoachManager {
     private void viewCoachDetails() {
         System.out.println("\n--- View Coach Details ---");
 
-        Coach coach = findCoachByNameUI();
+        Coach coach = selectCoachFromList();
         if (coach == null) {
             System.out.println("Coach not found.");
             return;
@@ -183,17 +183,15 @@ public class CoachManager {
         }
     }
 
-    private Coach findCoachByNameUI() {
-        Collection<Coach> coaches = getAllCoaches();
-
-        if (coaches.isEmpty()) {
-            System.out.println("No coaches available. Please add a coach first.");
-            return null;
-        }
-
+    /**
+     * Displays a list of coaches and returns the index for the "Cancel" option
+     *
+     * @param coachList The list of coaches to display
+     * @return The index number that represents the "Cancel" option
+     */
+    private int displayCoachList(List<Coach> coachList) {
         System.out.println("\n===== Available Coaches =====");
         int index = 1;
-        List<Coach> coachList = new ArrayList<>(coaches);
 
         for (Coach coach : coachList) {
             System.out.printf("%d. %s %s (Team: %s)\n", 
@@ -203,21 +201,31 @@ public class CoachManager {
                     coach.getTeamName());
         }
         System.out.println(index + ". Cancel");
-
         System.out.print("Enter the number of the coach:");
+
+        return index;
+    }
+
+    /**
+     * Gets a valid coach selection from user input
+     *
+     * @param maxIndex The maximum valid index (inclusive)
+     * @return The selected index (1-based) or -1 for cancel
+     */
+    private int getValidCoachSelection(int maxIndex) {
         int selection = 0;
         boolean validInput = false;
 
         while (!validInput) {
             if (scanner.hasNextInt()) {
                 selection = scanner.nextInt();
-                if (selection == index) {
+                if (selection == maxIndex) {
                     scanner.nextLine(); // Clear the newline
-                    return null;
-                } else if (selection > 0 && selection < index) {
+                    return -1; // Cancel selected
+                } else if (selection > 0 && selection < maxIndex) {
                     validInput = true;
                 } else {
-                    System.out.print("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + (maxIndex-1) + ":");
                 }
             } else {
                 System.out.print("Invalid input. Please enter a number:");
@@ -225,6 +233,30 @@ public class CoachManager {
             }
         }
         scanner.nextLine(); // Clear the newline
+
+        return selection;
+    }
+
+    /**
+     * Allows the user to select a coach from a displayed list
+     *
+     * @return The selected Coach object or null if selection was cancelled
+     */
+    private Coach selectCoachFromList() {
+        Collection<Coach> coaches = getAllCoaches();
+
+        if (coaches.isEmpty()) {
+            System.out.println("No coaches available. Please add a coach first.");
+            return null;
+        }
+
+        List<Coach> coachList = new ArrayList<>(coaches);
+        int cancelIndex = displayCoachList(coachList);
+        int selection = getValidCoachSelection(cancelIndex);
+
+        if (selection == -1) {
+            return null; // User cancelled
+        }
 
         return coachList.get(selection - 1);
     }
