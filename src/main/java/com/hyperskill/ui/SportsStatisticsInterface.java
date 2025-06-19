@@ -65,13 +65,13 @@ public class SportsStatisticsInterface {
     }
 
     private static void displayStatisticsMenu() {
-        System.out.println("""
+        System.out.print("""
                 📊 STATISTICS MENU 📊
                 1️⃣ Coach Statistics
                 2️⃣ Player Statistics
                 3️⃣ Team Statistics
                 4️⃣ Back to Main Menu
-                Select an option:""");
+                Select an option: """);
     }
 
     private static void handleCoachStatistics() {
@@ -105,7 +105,7 @@ public class SportsStatisticsInterface {
     }
 
     private static void mainMenu() {
-        System.out.println("""
+        System.out.print("""
                 🏆 FOOTBALL STATISTICS SYSTEM 🏆
                 1️⃣ Manage Teams
                 2️⃣ Manage Players
@@ -113,7 +113,7 @@ public class SportsStatisticsInterface {
                 4️⃣ Record a Match
                 5️⃣ View Statistics
                 6️⃣ Exit
-                
-                Select an option:""");
+
+                Select an option: """);
     }
 }

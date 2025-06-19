@@ -50,19 +50,19 @@ public class CoachStatisticsManager {
     }
 
     private void displayMenu() {
-        System.out.println("""
+        System.out.print("""
                 👨‍💼 COACH STATISTICS 👨‍💼
                 1️⃣ View statistics for a specific coach
                 2️⃣ View coach rankings
                 3️⃣ Back to Statistics Menu
-                Select an option:""");
+                Select an option: """);
     }
 
     private Coach findCoachByName() {
-        System.out.println("Enter coach's first name:");
+        System.out.print("Enter coach's first name: ");
         String firstName = scanner.nextLine().trim();
 
-        System.out.println("Enter coach's last name:");
+        System.out.print("Enter coach's last name: ");
         String lastName = scanner.nextLine().trim();
 
         Coach coach = FootballStatisticsDB.getCoachByName(firstName, lastName);
@@ -130,7 +130,7 @@ public class CoachStatisticsManager {
             List<Coach> coaches;
 
             if (option >= 1 && option <= 5) {
-                System.out.println("How many coaches would you like to see in the ranking? (Default: 5)");
+                System.out.print("How many coaches would you like to see in the ranking? (Default: 5): ");
                 if (scanner.hasNextInt()) {
                     limit = scanner.nextInt();
                 } else {
@@ -174,7 +174,7 @@ public class CoachStatisticsManager {
     }
 
     private void displayCoachRankingMenu() {
-        System.out.println("""
+        System.out.print("""
                 🏆 COACH RANKINGS 🏆
                 1️⃣ Top coaches by victories
                 2️⃣ Top coaches by goals scored
@@ -182,7 +182,7 @@ public class CoachStatisticsManager {
                 4️⃣ Worst coaches by losses
                 5️⃣ Worst coaches by goals conceded
                 6️⃣ Back to Coach Statistics
-                Select an option:""");
+                Select an option: """);
     }
 
     private void printCoachRankingWithMetric(List<Coach> coaches, String metric) {
