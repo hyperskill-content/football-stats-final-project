@@ -216,19 +216,20 @@ public class PlayerManager {
 
         System.out.print("Select a team: ");
         int choice;
-        try {
-            choice = Integer.parseInt(scanner.nextLine());
-            if (choice == index) {
-                return null;
-            } else if (choice > 0 && choice < index) {
-                return teamList.get(choice - 1);
-            } else {
-                System.out.println("Invalid selection.");
-                return null;
+        while (true) {
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice == index) {
+                    return null;
+                } else if (choice > 0 && choice < index) {
+                    return teamList.get(choice - 1);
+                } else {
+                    System.out.println("Invalid selection.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
-            return null;
+            System.out.print("Select a team (valid options): ");
         }
     }
 
