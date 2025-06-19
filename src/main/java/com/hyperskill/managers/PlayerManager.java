@@ -103,16 +103,15 @@ public class PlayerManager {
     private void editPlayer() {
         System.out.println("\n===== Edit Player =====");
 
-        System.out.print("Enter player's first name: ");
-        String firstName = scanner.nextLine().trim();
+        Team team = selectTeam();
+        if (team == null) {
+            System.out.println("Operation canceled.");
+            return;
+        }
 
-        System.out.print("Enter player's last name: ");
-        String lastName = scanner.nextLine().trim();
-
-        Player player = findPlayerByName(firstName, lastName);
-
+        Player player = selectPlayerFromTeam(team.getName());
         if (player == null) {
-            System.out.println("Player not found.");
+            System.out.println("No player selected or no players in this team.");
             return;
         }
 
@@ -172,16 +171,15 @@ public class PlayerManager {
     private void deletePlayer() {
         System.out.println("\n===== Delete Player =====");
 
-        System.out.print("Enter player's first name: ");
-        String firstName = scanner.nextLine().trim();
+        Team team = selectTeam();
+        if (team == null) {
+            System.out.println("Operation canceled.");
+            return;
+        }
 
-        System.out.print("Enter player's last name: ");
-        String lastName = scanner.nextLine().trim();
-
-        Player player = findPlayerByName(firstName, lastName);
-
+        Player player = selectPlayerFromTeam(team.getName());
         if (player == null) {
-            System.out.println("Player not found.");
+            System.out.println("No player selected or no players in this team.");
             return;
         }
 

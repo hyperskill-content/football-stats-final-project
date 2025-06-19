@@ -4,7 +4,10 @@ import com.hyperskill.FootballStatisticsDB;
 import com.hyperskill.data_models.Player;
 import com.hyperskill.data_models.Team;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
@@ -94,9 +97,46 @@ public class TeamManager {
     }
 
     private Team findTeamByName() {
-        System.out.print("Enter team name: ");
-        String teamName = scanner.nextLine().trim();
-        return FootballStatisticsDB.getTeamByName(teamName);
+
+        Collection<Team> teams = FootballStatisticsDB.getTeams();
+
+        if (teams.isEmpty()) {
+            System.out.println("No teams available. Please add a team first.");
+            return null;
+        }
+
+        System.out.println("\n===== Available Teams =====");
+        int index = 1;
+        List<Team> teamList = new ArrayList<>(teams);
+
+        for (Team team : teamList) {
+            System.out.printf("%d. %s\n", index++, team.getName());
+        }
+        System.out.println(index + ". Cancel");
+
+        System.out.print("Enter the number of the team:");
+        int selection = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            if (scanner.hasNextInt()) {
+                selection = scanner.nextInt();
+                if (selection == index) {
+                    scanner.nextLine(); // Clear the newline
+                    return null;
+                } else if (selection > 0 && selection < index) {
+                    validInput = true;
+                } else {
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
+                }
+            } else {
+                System.out.print("Invalid input. Please enter a number:");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        scanner.nextLine(); // Clear the newline
+
+        return teamList.get(selection - 1);
     }
 
     private void viewTeamDetails() {

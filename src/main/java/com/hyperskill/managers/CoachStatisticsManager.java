@@ -6,6 +6,7 @@ import com.hyperskill.data_models.Team;
 import com.hyperskill.statistics.CoachStatistics;
 import com.hyperskill.statistics.TeamStatistics;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,20 +60,47 @@ public class CoachStatisticsManager {
     }
 
     private Coach findCoachByName() {
-        System.out.print("Enter coach's first name: ");
-        String firstName = scanner.nextLine().trim();
 
-        System.out.print("Enter coach's last name: ");
-        String lastName = scanner.nextLine().trim();
-
-        Coach coach = FootballStatisticsDB.getCoachByName(firstName, lastName);
-
-        if (coach == null) {
-            System.out.println("Coach not found. Please check the name and try again.");
+        List<Coach> coaches = new ArrayList<>(FootballStatisticsDB.getCoaches());
+        if (coaches.isEmpty()) {
+            System.out.println("No coaches found in the database.");
             return null;
         }
 
-        return coach;
+        displayCoachesList(coaches);
+
+        System.out.print("Enter the number of the coach:");
+        int selection = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            if (scanner.hasNextInt()) {
+                selection = scanner.nextInt();
+                if (selection > 0 && selection <= coaches.size()) {
+                    validInput = true;
+                } else {
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + coaches.size() + ":");
+                }
+            } else {
+                System.out.print("Invalid input. Please enter a number:");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        scanner.nextLine(); // Clear the newline
+
+        return coaches.get(selection - 1);
+    }
+
+    private void displayCoachesList(List<Coach> coaches) {
+        System.out.println("\n===== Available Coaches =====");
+        for (int i = 0; i < coaches.size(); i++) {
+            Coach coach = coaches.get(i);
+            System.out.printf("%d. %s %s (Team: %s)\n", 
+                    i + 1, 
+                    coach.getFirstName(), 
+                    coach.getLastName(), 
+                    coach.getTeamName());
+        }
     }
 
     private void viewSpecificCoachStats(Coach coach) {
@@ -109,9 +137,6 @@ public class CoachStatisticsManager {
             System.out.printf("Loss percentage: %.2f%%\n", lossPercentage);
             System.out.printf("Draw percentage: %.2f%%\n", drawPercentage);
         }
-
-        System.out.println("\nPress Enter to continue...");
-        scanner.nextLine();
     }
 
     private void viewCoachRankings() {
@@ -235,9 +260,6 @@ public class CoachStatisticsManager {
                         value, metric);
             }
         }
-
-        System.out.println("\nPress Enter to continue...");
-        scanner.nextLine();
     }
 
     public void displayCoachStatistics(Coach coach) {

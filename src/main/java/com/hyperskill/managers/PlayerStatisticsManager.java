@@ -4,6 +4,8 @@ import com.hyperskill.FootballStatisticsDB;
 import com.hyperskill.data_models.Player;
 import com.hyperskill.statistics.PlayerStatistics;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PlayerStatisticsManager {
@@ -38,11 +40,9 @@ public class PlayerStatisticsManager {
 
 
     private void showPlayerGoals() {
-        System.out.print("Enter player name: ");
-        String[] playerName = scanner.nextLine().trim().split(" ");
-        Player player = FootballStatisticsDB.getPlayerByName(playerName[0], playerName[1]);
+
+        Player player = findPlayerByNumber();
         if (player == null) {
-            System.out.println("Player not found. Please check the name and try again.");
             return;
         }
         System.out.printf("Player: %s %s, Goals: %s\n",
@@ -52,17 +52,58 @@ public class PlayerStatisticsManager {
     }
 
     private void showPlayerMatches() {
-        System.out.print("Enter player name: ");
-        String[] playerName = scanner.nextLine().trim().split(" ");
-        Player player = FootballStatisticsDB.getPlayerByName(playerName[0], playerName[1]);
+
+        Player player = findPlayerByNumber();
         if (player == null) {
-            System.out.println("Player not found. Please check the name and try again.");
             return;
         }
         System.out.printf("Player: %s %s, Matches: %s\n",
                 player.getFirstName(),
                 player.getLastName(),
                 player.getPlayedMatches());
+    }
+
+    private Player findPlayerByNumber() {
+        List<Player> players = new ArrayList<>(FootballStatisticsDB.getPlayers());
+        if (players.isEmpty()) {
+            System.out.println("No players found in the database.");
+            return null;
+        }
+
+        displayPlayersList(players);
+
+        System.out.print("Enter the number of the player:");
+        int selection = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            if (scanner.hasNextInt()) {
+                selection = scanner.nextInt();
+                if (selection > 0 && selection <= players.size()) {
+                    validInput = true;
+                } else {
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + players.size() + ":");
+                }
+            } else {
+                System.out.print("Invalid input. Please enter a number:");
+                scanner.next(); // Clear invalid input
+            }
+        }
+        scanner.nextLine(); // Clear the newline
+
+        return players.get(selection - 1);
+    }
+
+    private void displayPlayersList(List<Player> players) {
+        System.out.println("\n===== Available Players =====");
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            System.out.printf("%d. %s %s (Team: %s)\n", 
+                    i + 1, 
+                    player.getFirstName(), 
+                    player.getLastName(), 
+                    player.getTeamName());
+        }
     }
 
     private int takeNoOfTopPlayers() {
