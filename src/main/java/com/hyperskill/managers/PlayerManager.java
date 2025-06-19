@@ -233,6 +233,57 @@ public class PlayerManager {
         }
     }
 
+    /**
+     * Displays a list of players and returns the index for the "Cancel" option
+     *
+     * @param playerList The list of players to display
+     * @param teamName The name of the team these players belong to
+     * @return The index number that represents the "Cancel" option
+     */
+    private int displayPlayerList(List<Player> playerList, String teamName) {
+        System.out.println("\nPlayers in " + teamName + ":");
+        int index = 1;
+
+        for (Player player : playerList) {
+            System.out.println(index++ + ". " + player.getFirstName() + " " + player.getLastName());
+        }
+        System.out.println(index + ". Cancel");
+        System.out.print("Select a player: ");
+
+        return index;
+    }
+
+    /**
+     * Gets a valid player selection from user input
+     *
+     * @param maxIndex The maximum valid index (inclusive)
+     * @return The selected index (1-based) or -1 for cancel
+     */
+    private int getValidPlayerSelection(int maxIndex) {
+        int choice;
+        while (true) {
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice == maxIndex) {
+                    return -1; // Cancel selected
+                } else if (choice > 0 && choice < maxIndex) {
+                    return choice;
+                } else {
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + (maxIndex-1));
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("Please enter a valid number:");
+            }
+            System.out.print("\nSelect a player: ");
+        }
+    }
+
+    /**
+     * Allows the user to select a player from a team
+     *
+     * @param teamName The name of the team to select a player from
+     * @return The selected Player object or null if selection was cancelled or no players in team
+     */
     private Player selectPlayerFromTeam(String teamName) {
         Set<Player> players = playerFactory.createPlayersForTeam(teamName);
 
@@ -241,31 +292,15 @@ public class PlayerManager {
             return null;
         }
 
-        System.out.println("\nPlayers in " + teamName + ":");
-        int index = 1;
         List<Player> playerList = new ArrayList<>(players);
+        int cancelIndex = displayPlayerList(playerList, teamName);
+        int selection = getValidPlayerSelection(cancelIndex);
 
-        for (Player player : playerList) {
-            System.out.println(index++ + ". " + player.getFirstName() + " " + player.getLastName());
+        if (selection == -1) {
+            return null; // User cancelled
         }
-        System.out.println(index + ". Cancel");
 
-        System.out.print("Select a player: ");
-        int choice;
-        try {
-            choice = Integer.parseInt(scanner.nextLine());
-            if (choice == index) {
-                return null;
-            } else if (choice > 0 && choice < index) {
-                return playerList.get(choice - 1);
-            } else {
-                System.out.println("Invalid selection.");
-                return null;
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
-            return null;
-        }
+        return playerList.get(selection - 1);
     }
 
     private Player findPlayerByName(String firstName, String lastName) {
