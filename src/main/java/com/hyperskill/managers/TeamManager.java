@@ -58,7 +58,7 @@ public class TeamManager {
         }
 
         String oldName = team.getName();
-        System.out.println("Enter new name: ");
+        System.out.print("Enter new name: ");
 
         String newName = validateName(oldName);
 
@@ -92,11 +92,12 @@ public class TeamManager {
     }
 
     private String getTeamName() {
-        System.out.println("Enter team name: ");
+        System.out.print("Enter team name: ");
         return validateName();
     }
 
     private Team findTeamByName() {
+
         Collection<Team> teams = FootballStatisticsDB.getTeams();
 
         if (teams.isEmpty()) {
@@ -159,7 +160,7 @@ public class TeamManager {
 
     private void addTeam() {
         Team team = new Team();
-        System.out.println("Enter team name: ");
+        System.out.print("Enter team name: ");
         String teamName = scanner.nextLine().trim();
         team.setName(teamName);
         FootballStatisticsDB.addTeam(team);
@@ -214,7 +215,7 @@ public class TeamManager {
         team = FootballStatisticsDB.getTeamByName(teamName);
 
         Set<Player> newPlayers = new HashSet<>();
-        System.out.println("How many players are you going to replace?");
+        System.out.print("How many players are you going to replace? ");
         int amount = 0;
         try {
             amount = Integer.parseInt(scanner.nextLine().trim());
@@ -245,9 +246,9 @@ public class TeamManager {
 
     private Player addPlayer(Team team) {
         System.out.println("Enter player data: ");
-        System.out.println("Enter first name: ");
+        System.out.print("Enter first name: ");
         String firstName = validateName();
-        System.out.println("Enter last name: ");
+        System.out.print("Enter last name: ");
         String lastName = validateName();
         if (firstName == null || lastName == null) {
             System.out.println("Your input is invalid. Return to the menu. ");

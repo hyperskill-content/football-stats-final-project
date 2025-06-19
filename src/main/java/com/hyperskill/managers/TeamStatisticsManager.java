@@ -50,7 +50,7 @@ public class TeamStatisticsManager {
     }
 
     private void showTopTeamsByGoalsTotal() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -61,7 +61,7 @@ public class TeamStatisticsManager {
     }
 
     private void showTopTeamsByGoalsPerYear() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -69,7 +69,7 @@ public class TeamStatisticsManager {
             System.out.println("Invalid number. Showing 5 top teams by default.");
         }
 
-        System.out.println("Enter the year: (Default: the current year)");
+        System.out.print("Enter the year (Default: the current year): ");
         int year = LocalDate.now().getYear();
         try {
             int inputYear = Integer.parseInt(scanner.nextLine());
@@ -83,7 +83,7 @@ public class TeamStatisticsManager {
     }
 
     private void showTopWinTeamsByMatches() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -94,7 +94,7 @@ public class TeamStatisticsManager {
     }
 
     private void showTopLoseTeamsByMatches() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -105,7 +105,7 @@ public class TeamStatisticsManager {
     }
 
     private void showTopDrawTeamsByMatches() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -116,7 +116,7 @@ public class TeamStatisticsManager {
     }
 
     private void showLowestRankedTeamsByGoals() {
-        System.out.println("How many teams would you like to see in the ranking? (Default: 5)");
+        System.out.print("How many teams would you like to see in the ranking? (Default: 5): ");
         int amount = 5;
         try {
             amount = Integer.parseInt(scanner.nextLine());
@@ -127,6 +127,7 @@ public class TeamStatisticsManager {
     }
 
     private void showStatisticsByTeam() {
+
         Team team = findTeamByNumber();
         if (team == null) {
             return;
@@ -142,12 +143,13 @@ public class TeamStatisticsManager {
     }
 
     private void showStatisticsByTeamPerYear() {
+
         Team team = findTeamByNumber();
         if (team == null) {
             return;
         }
 
-        System.out.println("Enter the year: ");
+        System.out.print("Enter the year: ");
         int year = LocalDate.now().getYear();
         try {
             int inputYear = Integer.parseInt(scanner.nextLine());
@@ -205,7 +207,7 @@ public class TeamStatisticsManager {
     }
 
     private void teamStatsMenu() {
-        System.out.println("""
+        System.out.print("""
                 👨‍💼 TEAM STATISTICS 👨‍💼
                 1️⃣ View all teams
                 2️⃣ View top teams by goals in total
@@ -217,6 +219,6 @@ public class TeamStatisticsManager {
                 8️⃣ View total amount of win, lose and draws matches by Team in total
                 9️⃣ View total amount of win, lose and draws matches by Team per year
                 🔟 Back to Main Menu
-                Select an option:""");
+                Select an option: """);
     }
 }

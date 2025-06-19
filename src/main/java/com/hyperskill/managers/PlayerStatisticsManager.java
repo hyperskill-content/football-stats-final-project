@@ -40,6 +40,7 @@ public class PlayerStatisticsManager {
 
 
     private void showPlayerGoals() {
+
         Player player = findPlayerByNumber();
         if (player == null) {
             return;
@@ -51,6 +52,7 @@ public class PlayerStatisticsManager {
     }
 
     private void showPlayerMatches() {
+
         Player player = findPlayerByNumber();
         if (player == null) {
             return;
@@ -105,7 +107,7 @@ public class PlayerStatisticsManager {
     }
 
     private int takeNoOfTopPlayers() {
-        System.out.println("Enter number of top players: ");
+        System.out.print("Enter number of top players: ");
         int noOfPlayers = 0;
         if (scanner.hasNextInt()) {
             noOfPlayers = scanner.nextInt();
@@ -148,7 +150,7 @@ public class PlayerStatisticsManager {
     }
 
     private void playerStatsMenu() {
-        System.out.println("""
+        System.out.print("""
                 👨‍💼 PLAYER STATISTICS 👨‍💼
                 1️⃣ View all players
                 2️⃣ View top players by goals
@@ -156,6 +158,6 @@ public class PlayerStatisticsManager {
                 4️⃣ View Player's goals
                 5️⃣ View Player's matches
                 6️⃣ Back to Main Menu
-                Select an option:""");
+                Select an option: """);
     }
 }

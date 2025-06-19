@@ -126,8 +126,7 @@ public class PlayerManager {
             System.out.println("Current details: " + player);
             System.out.println("1. Change team");
             System.out.println("2. Update goals");
-            System.out.println("3. Update matches played");
-            System.out.println("4. Back to player management");
+            System.out.println("3. Back to player management");
             System.out.print("Select an option: ");
 
             int choice;
@@ -161,10 +160,6 @@ public class PlayerManager {
                     }
                     break;
                 case 3:
-                    // You could add functionality to update matches played if needed
-                    System.out.println("This feature is not available. Matches played are updated automatically.");
-                    break;
-                case 4:
                     editing = false;
                     break;
                 default:
