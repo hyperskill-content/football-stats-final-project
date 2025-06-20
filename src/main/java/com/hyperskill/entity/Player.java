@@ -18,6 +18,7 @@ public class Player extends Person {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private long id;
     //deprecated, will be deleted after all changes
+    @Transient
     private String teamName;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
