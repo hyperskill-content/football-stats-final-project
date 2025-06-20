@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Player (base abstract class: Person)
