@@ -1,6 +1,10 @@
 package com.hyperskill.data_models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hyperskill.FootballStatisticsDB;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 import java.util.*;
 
@@ -11,32 +15,31 @@ import java.util.*;
  * Methods: display/update stats (percentage of wins/losses/draws by year
  * /total, average/total goal score by year, total wins/losses/draws, etc.)
  */
-
+@Entity
 public class Team {
-    private final String id;
+    @Id
+    @GeneratedValue
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private UUID id;
     private String name;
     private Set<Player> players = new HashSet<>();
     private Coach coach;
     private Set<Match> allMatches = new HashSet<>();
     private int goalScored;
 
-    public Team() {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
-    }
+    public Team() {}
 
     public Team(String name) {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.name = name;
     }
 
     public Team(String name, Coach coach, Set<Player> playersTeam) {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.name = name;
         this.coach = coach;
         this.players = playersTeam;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
