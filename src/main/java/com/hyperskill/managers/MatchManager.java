@@ -1,9 +1,9 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 import com.hyperskill.factory.MatchFactory;
 import com.hyperskill.factory.SimpleMatchFactory;
 
@@ -162,7 +162,7 @@ public class MatchManager {
 
         for (Map.Entry<Player, Integer> entry : goalScorers.entrySet()) {
             Player player = entry.getKey();
-            if (player.getTeamName().equalsIgnoreCase(team.getName())) {
+            if (player.getTeam().getName().equalsIgnoreCase(team.getName())) {
                 totalGoals += entry.getValue();
             }
         }

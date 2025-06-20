@@ -1,14 +1,13 @@
 package com.hyperskill.factory;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 import com.hyperskill.utils.FootballDataLoader;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.Set;
 
 
 public interface MatchFactory {

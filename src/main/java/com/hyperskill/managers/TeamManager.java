@@ -1,8 +1,8 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -79,8 +79,8 @@ public class TeamManager {
 
     private void updatePlayerTeam(String oldTeamName, String newTeamName) {
         FootballStatisticsDB.getPlayers().forEach(player -> {
-            if (player.getTeamName().equalsIgnoreCase(oldTeamName)) {
-                player.setTeamName(newTeamName);
+            if (player.getTeam().getName().equalsIgnoreCase(oldTeamName)) {
+                player.setTeam(new Team(newTeamName));
             }
         });
     }
@@ -223,7 +223,7 @@ public class TeamManager {
         }
 
         team.deletePlayer(oldPlayer);
-        oldPlayer.setTeamName(null);
+        oldPlayer.setTeam(new Team(null));
 
         System.out.println("The new player data:");
         Player newPlayer = addPlayer(team);
@@ -270,7 +270,7 @@ public class TeamManager {
         }
 
         Set<Player> oldPlayers = new HashSet<>(team.getPlayers());
-        oldPlayers.forEach(player -> player.setTeamName(null));
+        oldPlayers.forEach(player -> player.setTeam(new Team(null)));
 
         team.replaceAllPlayers(newPlayers);
     }

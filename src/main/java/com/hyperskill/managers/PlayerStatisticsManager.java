@@ -1,7 +1,7 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Player;
+import com.hyperskill.entity.Player;
 import com.hyperskill.statistics.PlayerStatistics;
 
 import java.util.ArrayList;
@@ -102,7 +102,7 @@ public class PlayerStatisticsManager {
                     i + 1, 
                     player.getFirstName(), 
                     player.getLastName(), 
-                    player.getTeamName());
+                    player.getTeam().getName());
         }
     }
 
@@ -143,7 +143,7 @@ public class PlayerStatisticsManager {
             System.out.printf("Name: %s %s, Team: %s, Goals: %s, Matches: %s \n",
                     player.getFirstName(),
                     player.getLastName(),
-                    player.getTeamName(),
+                    player.getTeam().getName(),
                     player.getGoals(),
                     player.getPlayedMatches());
         }
