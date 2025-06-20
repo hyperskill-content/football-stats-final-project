@@ -35,7 +35,7 @@ public class PlayerService {
         playerRepository.saveAll(players);
     }
 
-    public Player getById(long id){
+    public Player getById(Long id){
         return playerRepository.getById(id);
     }
 
@@ -52,7 +52,7 @@ public class PlayerService {
         return team.getPlayers();
     }
 
-    public Player deleteById(long id){
+    public Player deleteById(Long id){
         if(!playerRepository.existsById(id)){
             //TODO add exception
             return null;

@@ -21,7 +21,7 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
     private String name;
     private Set<Player> players = new HashSet<>();
     private Coach coach;
@@ -40,7 +40,7 @@ public class Team {
         this.players = playersTeam;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -9,8 +9,8 @@ import java.util.Collection;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {
-    Player getById(long id);
+    Player getById(Long id);
     Player getByFirstNameAndLastName(Person person);
     Collection<Player> getAll();
-    Player deleteById(long id);
+    void deleteById(Long id);
 }

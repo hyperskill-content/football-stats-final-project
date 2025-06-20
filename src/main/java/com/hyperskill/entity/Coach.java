@@ -19,7 +19,7 @@ public class Coach extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
     private String teamName;
     private int playedMatches;
 
@@ -30,7 +30,7 @@ public class Coach extends Person {
         this.teamName = teamName;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -16,7 +16,7 @@ public class Player extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
     //deprecated, will be deleted after all changes
     @Transient
     private String teamName;
@@ -46,7 +46,7 @@ public class Player extends Person {
     }
 
     //Getters and Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

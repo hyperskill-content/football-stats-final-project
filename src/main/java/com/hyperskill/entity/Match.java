@@ -10,14 +10,13 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private long id;
+    private Long id;
     private Team homeTeam;
     private Team awayTeam;
     private int homeScore;
@@ -55,7 +54,7 @@ public class Match {
         this.matchDate = matchDate;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
