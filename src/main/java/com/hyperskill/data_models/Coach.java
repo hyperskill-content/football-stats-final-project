@@ -1,5 +1,10 @@
 package com.hyperskill.data_models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -9,23 +14,23 @@ import java.util.UUID;
  * Attributes: String firstName, String lastName, String team
  * Methods: display/update stats (goals scored, matches played, average goals scored, etc.)
  */
-
+@Entity
 public class Coach extends Person {
-    private final String id;
+    @Id
+    @GeneratedValue
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private UUID id;
     private String teamName;
     private int playedMatches;
 
-    public Coach() {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
-    }
+    public Coach() {}
 
     public Coach(String firstName, String lastName, String teamName) {
         super(firstName, lastName);
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.teamName = teamName;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

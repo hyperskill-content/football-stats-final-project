@@ -39,7 +39,7 @@ public class TeamManager {
                 case 8 -> {
                     return;
                 }
-                default -> System.out.println("Invalid option... please select correct option");
+                default -> System.out.println("Invalid input. Please select a valid option");
             }
         }
     }
@@ -51,7 +51,7 @@ public class TeamManager {
     }
 
     private void updateTeam() {
-        Team team = findTeamByName();
+        Team team = selectTeamFromList();
         if (team == null) {
             System.out.println("Team doesn't exist. Please check again.");
             return;
@@ -96,38 +96,45 @@ public class TeamManager {
         return validateName();
     }
 
-    private Team findTeamByName() {
-
-        Collection<Team> teams = FootballStatisticsDB.getTeams();
-
-        if (teams.isEmpty()) {
-            System.out.println("No teams available. Please add a team first.");
-            return null;
-        }
-
+    /**
+     * Displays a list of teams and returns the index for the "Cancel" option
+     *
+     * @param teamList The list of teams to display
+     * @return The index number that represents the "Cancel" option
+     */
+    private int displayTeamList(List<Team> teamList) {
         System.out.println("\n===== Available Teams =====");
         int index = 1;
-        List<Team> teamList = new ArrayList<>(teams);
 
         for (Team team : teamList) {
             System.out.printf("%d. %s\n", index++, team.getName());
         }
         System.out.println(index + ". Cancel");
-
         System.out.print("Enter the number of the team:");
+
+        return index;
+    }
+
+    /**
+     * Gets a valid team selection from user input
+     *
+     * @param maxIndex The maximum valid index (inclusive)
+     * @return The selected index (1-based) or -1 for cancel
+     */
+    private int getValidTeamSelection(int maxIndex) {
         int selection = 0;
         boolean validInput = false;
 
         while (!validInput) {
             if (scanner.hasNextInt()) {
                 selection = scanner.nextInt();
-                if (selection == index) {
+                if (selection == maxIndex) {
                     scanner.nextLine(); // Clear the newline
-                    return null;
-                } else if (selection > 0 && selection < index) {
+                    return -1; // Cancel selected
+                } else if (selection > 0 && selection < maxIndex) {
                     validInput = true;
                 } else {
-                    System.out.print("Invalid selection. Please enter a number between 1 and " + (index-1) + ":");
+                    System.out.print("Invalid selection. Please enter a number between 1 and " + (maxIndex-1) + ":");
                 }
             } else {
                 System.out.print("Invalid input. Please enter a number:");
@@ -136,20 +143,44 @@ public class TeamManager {
         }
         scanner.nextLine(); // Clear the newline
 
+        return selection;
+    }
+
+    /**
+     * Allows the user to select a team from a displayed list
+     *
+     * @return The selected Team object or null if selection was cancelled
+     */
+    private Team selectTeamFromList() {
+        Collection<Team> teams = FootballStatisticsDB.getTeams();
+
+        if (teams.isEmpty()) {
+            System.out.println("No teams available. Please add a team first.");
+            return null;
+        }
+
+        List<Team> teamList = new ArrayList<>(teams);
+        int cancelIndex = displayTeamList(teamList);
+        int selection = getValidTeamSelection(cancelIndex);
+
+        if (selection == -1) {
+            return null; // User cancelled
+        }
+
         return teamList.get(selection - 1);
     }
 
     private void viewTeamDetails() {
-        Team team = findTeamByName();
+        Team team = selectTeamFromList();
         if (team == null) {
             System.out.println("Team doesn't exist. Please check again.");
             return;
         }
-        System.out.printf("Team name: %s, Coach: %s, Goal scored: %s, Matches: %s \n", team.getName(), team.getCoach(), team.getGoalScored(), team.getAllMatches());
+        System.out.printf("Team name: %s\nCoach: %s\nGoal scored: %s\nMatches: %s\n", team.getName(), team.getCoach(), team.getGoalScored(), team.getAllMatches());
     }
 
     private void deleteTeam() {
-        Team team = findTeamByName();
+        Team team = selectTeamFromList();
         if (team == null) {
             System.out.println("Team doesn't exist. Please check again.");
             return;
@@ -167,7 +198,7 @@ public class TeamManager {
     }
 
     private void replacePlayer() {
-        Team team = findTeamByName();
+        Team team = selectTeamFromList();
         if (team == null) {
             System.out.println("Team doesn't exist. Please check again.");
             return;
@@ -306,7 +337,7 @@ public class TeamManager {
     }
 
     private void teamMenu() {
-        System.out.println("""
+        System.out.print("""
                 1. Add a new team
                 2. Delete a team
                 3. View team details
@@ -315,6 +346,6 @@ public class TeamManager {
                 6. Replace all players
                 7. Replace a player
                 8. Exit
-                """);
+                Select an option:\s""");
     }
 }
