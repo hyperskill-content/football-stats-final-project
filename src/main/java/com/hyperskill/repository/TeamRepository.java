@@ -4,8 +4,7 @@ import com.hyperskill.entity.Team;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface TeamRepository extends CrudRepository<Team, UUID> {
+public interface TeamRepository extends CrudRepository<Team, Long> {
     public List<Team> getAll();
 }
