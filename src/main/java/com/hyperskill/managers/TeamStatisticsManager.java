@@ -1,7 +1,7 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Team;
 import com.hyperskill.statistics.TeamStatistics;
 
 import java.time.LocalDate;

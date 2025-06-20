@@ -1,8 +1,8 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Coach;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Coach;
+import com.hyperskill.entity.Team;
 import com.hyperskill.statistics.CoachStatistics;
 import com.hyperskill.statistics.TeamStatistics;
 

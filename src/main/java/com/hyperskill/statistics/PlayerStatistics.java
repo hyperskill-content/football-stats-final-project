@@ -1,9 +1,9 @@
 package com.hyperskill.statistics;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class PlayerStatistics {
 
     public int goalsScoredPerYear(Player player, int year) {
         int amountGoals = 0;
-        Team currTeam = FootballStatisticsDB.getTeamByName(player.getTeamName());
+        Team currTeam = FootballStatisticsDB.getTeamByName(player.getTeam().getName());
         if (currTeam == null) {
             return 0;
         }
@@ -64,7 +64,7 @@ public class PlayerStatistics {
 
     public int matchesPlayedPerYear(Player player, int year) {
         int amountPlayedMatches = 0;
-        Team currTeam = FootballStatisticsDB.getTeamByName(player.getTeamName());
+        Team currTeam = FootballStatisticsDB.getTeamByName(player.getTeam().getName());
         if (currTeam == null) {
             return 0;
         }

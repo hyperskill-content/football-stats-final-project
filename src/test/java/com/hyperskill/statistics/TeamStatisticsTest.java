@@ -1,8 +1,8 @@
 package com.hyperskill.statistics;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

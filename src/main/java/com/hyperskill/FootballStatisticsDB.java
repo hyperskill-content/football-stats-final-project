@@ -1,18 +1,18 @@
 package com.hyperskill;
 
-import com.hyperskill.data_models.Coach;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Coach;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 import com.hyperskill.utils.FootballDataLoader;
 
 import java.util.*;
 
 public class FootballStatisticsDB {
-    private final static Map<String, Player> players = new HashMap<>();
-    private final static Map<String, Coach> coaches = new HashMap<>();
-    private final static Map<String, Team> teams = new HashMap<>();
-    private final static Map<String, Match> matches = new HashMap<>();
+    private final static Map<Long, Player> players = new HashMap<>();
+    private final static Map<Long, Coach> coaches = new HashMap<>();
+    private final static Map<Long, Team> teams = new HashMap<>();
+    private final static Map<Long, Match> matches = new HashMap<>();
     private static boolean initialDataLoaded = false;
 
     // Create
@@ -26,7 +26,7 @@ public class FootballStatisticsDB {
     }
 
     // Read
-    public static Player getPlayer(String id) {
+    public static Player getPlayer(Long id) {
         if (!players.containsKey(id)) {
             return null;
         }
@@ -49,7 +49,7 @@ public class FootballStatisticsDB {
     public static Collection<Player> getPlayersByTeam(String teamName) {
         Set<Player> playersTeam = new HashSet<>();
         for (Player player : players.values()) {
-            if (player.getTeamName().equalsIgnoreCase(teamName)) {
+            if (player.getTeam().getName().equalsIgnoreCase(teamName)) {
                 playersTeam.add(player);
             }
         }
@@ -57,7 +57,7 @@ public class FootballStatisticsDB {
     }
 
     // Update
-    public static void updatePlayerGoals(String id, int goals) {
+    public static void updatePlayerGoals(Long id, int goals) {
         Player player = getPlayer(id);
         if (player != null) {
             player.setGoals(goals);
@@ -65,16 +65,16 @@ public class FootballStatisticsDB {
         }
     }
 
-    public static void updatePlayerTeam(String id, String teamName) {
+    public static void updatePlayerTeam(Long id, String teamName) {
         Player player = getPlayer(id);
         if (player != null) {
-            player.setTeamName(teamName);
+            player.setTeam(new Team(teamName));
             players.put(id, player);
         }
     }
 
     // Delete
-    public static void deletePlayer(String id) {
+    public static void deletePlayer(Long id) {
         players.remove(id);
     }
 
@@ -88,7 +88,7 @@ public class FootballStatisticsDB {
     }
 
     // Read
-    public static Coach getCoachById(String id) {
+    public static Coach getCoachById(Long id) {
         if (!coaches.containsKey(id)) {
             return null;
         }
@@ -127,7 +127,7 @@ public class FootballStatisticsDB {
     }
 
     // Update
-    public static void updateCoachTeam(String id, String teamName) {
+    public static void updateCoachTeam(Long id, String teamName) {
         Coach coach = getCoachById(id);
         if (coach != null) {
             coach.setTeamName(teamName);
@@ -136,7 +136,7 @@ public class FootballStatisticsDB {
     }
 
     // Delete
-    public static boolean deleteCoach(String id) {
+    public static boolean deleteCoach(Long id) {
         if (coaches.containsKey(id)) {
             coaches.remove(id);
             return true;
@@ -154,7 +154,7 @@ public class FootballStatisticsDB {
     }
 
     // Read
-    public static Team getTeamById(String id) {
+    public static Team getTeamById(Long id) {
         if (!teams.containsKey(id)) {
             return null;
         }
@@ -175,7 +175,7 @@ public class FootballStatisticsDB {
     }
 
     // Update
-    public static void updateTeamName(String id, String name) {
+    public static void updateTeamName(Long id, String name) {
         Team team = getTeamById(id);
         if (team != null) {
             team.setName(name);
@@ -184,7 +184,7 @@ public class FootballStatisticsDB {
     }
 
     // Delete
-    public static void deleteTeam(String id) {
+    public static void deleteTeam(Long id) {
         teams.remove(id);
     }
 

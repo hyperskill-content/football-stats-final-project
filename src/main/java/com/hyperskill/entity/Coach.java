@@ -1,12 +1,12 @@
-package com.hyperskill.data_models;
+package com.hyperskill.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Coach (base abstract class: Person)
@@ -17,9 +17,9 @@ import java.util.UUID;
 @Entity
 public class Coach extends Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private UUID id;
+    private long id;
     private String teamName;
     private int playedMatches;
 
@@ -30,7 +30,7 @@ public class Coach extends Person {
         this.teamName = teamName;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 

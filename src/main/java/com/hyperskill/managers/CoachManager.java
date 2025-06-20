@@ -1,7 +1,7 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Coach;
+import com.hyperskill.entity.Coach;
 import com.hyperskill.factory.CoachFactory;
 
 import java.util.ArrayList;
@@ -289,7 +289,7 @@ public class CoachManager {
      * @param coachId The ID of the coach to delete
      * @return true if deletion was successful, false otherwise
      */
-    public boolean deleteCoach(String coachId) {
+    public boolean deleteCoach(Long coachId) {
         return FootballStatisticsDB.deleteCoach(coachId);
     }
 
@@ -299,7 +299,7 @@ public class CoachManager {
      * @param id The coach ID to search for
      * @return The found coach or null if not found
      */
-    public Coach findCoachById(String id) {
+    public Coach findCoachById(Long id) {
         return FootballStatisticsDB.getCoachById(id);
     }
 

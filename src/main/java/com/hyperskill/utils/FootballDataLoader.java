@@ -3,10 +3,10 @@ package com.hyperskill.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.hyperskill.data_models.Coach;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
-import com.hyperskill.data_models.Match;
+import com.hyperskill.entity.Coach;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
+import com.hyperskill.entity.Match;
 import com.hyperskill.FootballStatisticsDB;
 
 import java.io.BufferedReader;
@@ -80,7 +80,7 @@ public class FootballDataLoader {
                             for (Player p : FootballStatisticsDB.getPlayers()) {
                                 if (p.getFirstName().equals(firstName) &&
                                         p.getLastName().equals(lastName) &&
-                                        p.getTeamName().equalsIgnoreCase(teamName)) {
+                                        p.getTeam().getName().equalsIgnoreCase(teamName)) {
                                     player = p;
                                     break;
                                 }
@@ -220,7 +220,7 @@ public class FootballDataLoader {
             // Find and assign players
             Set<Player> teamPlayers = new HashSet<>();
             for (Player player : FootballStatisticsDB.getPlayers()) {
-                if (player.getTeamName().equalsIgnoreCase(teamName)) {
+                if (player.getTeam().getName().equalsIgnoreCase(teamName)) {
                     teamPlayers.add(player);
                 }
             }

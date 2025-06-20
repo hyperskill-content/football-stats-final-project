@@ -1,9 +1,9 @@
 package com.hyperskill.statistics;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Coach;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Coach;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;

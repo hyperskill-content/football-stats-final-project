@@ -1,12 +1,9 @@
-package com.hyperskill.data_models;
+package com.hyperskill.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Player (base abstract class: Person)
@@ -17,28 +14,38 @@ import java.util.UUID;
 @Entity
 public class Player extends Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private UUID id;
+    private long id;
+    //deprecated, will be deleted after all changes
     private String teamName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
     private int goals;
     private int playedMatches;
 
     public Player() {}
 
+    //deprecated
     public Player(String firstName, String lastName, String teamName) {
         super(firstName, lastName);
         this.teamName = teamName;
     }
 
-    public Player(String firstName, String lastName, String teamName, int goals) {
+    public Player(String firstName, String lastName, Team team) {
         super(firstName, lastName);
-        this.teamName = teamName;
+        this.team = team;
+    }
+
+    public Player(String firstName, String lastName, Team team, int goals) {
+        super(firstName, lastName);
+        this.team = team;
         this.goals = goals;
     }
 
     //Getters and Setters
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
@@ -50,8 +57,8 @@ public class Player extends Person {
         return super.getLastName();
     }
 
-    public String getTeamName() {
-        return teamName;
+    public Team getTeam() {
+        return team;
     }
 
     public int getGoals() {
@@ -62,8 +69,8 @@ public class Player extends Person {
         return playedMatches;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public void setGoals(int goals) {
@@ -74,7 +81,7 @@ public class Player extends Person {
     public String toString() {
         return "Player {" + "firstName = " + super.getFirstName()
                 + ", lastName = " + super.getLastName()
-                + ", team = " + teamName
+                + ", team = " + team.getName()
                 + ", goals = " + goals + "}";
     }
 

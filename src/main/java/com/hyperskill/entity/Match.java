@@ -1,8 +1,9 @@
-package com.hyperskill.data_models;
+package com.hyperskill.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
@@ -14,9 +15,9 @@ import java.util.UUID;
 @Entity
 public class Match {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private UUID id;
+    private long id;
     private Team homeTeam;
     private Team awayTeam;
     private int homeScore;
@@ -54,7 +55,7 @@ public class Match {
         this.matchDate = matchDate;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 

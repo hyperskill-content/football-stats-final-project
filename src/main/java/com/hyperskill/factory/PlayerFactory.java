@@ -1,7 +1,7 @@
 package com.hyperskill.factory;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Player;
+import com.hyperskill.entity.Player;
 import com.hyperskill.utils.FootballDataLoader;
 
 import java.util.Collection;
@@ -55,7 +55,7 @@ class FileBasedPlayerFactory implements PlayerFactory {
         Set<Player> teamPlayers = new HashSet<>();
 
         for (Player player : allPlayers) {
-            if (player.getTeamName().equalsIgnoreCase(teamName)) {
+            if (player.getTeam().getName().equalsIgnoreCase(teamName)) {
                 teamPlayers.add(player);
             }
         }

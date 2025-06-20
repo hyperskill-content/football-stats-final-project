@@ -1,7 +1,7 @@
 package com.hyperskill.factory;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Coach;
+import com.hyperskill.entity.Coach;
 import com.hyperskill.utils.FootballDataLoader;
 
 import java.util.Collection;

@@ -1,8 +1,8 @@
 package com.hyperskill.managers;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 import com.hyperskill.factory.SimplePlayerFactory;
 
 import java.util.*;
@@ -141,7 +141,7 @@ public class PlayerManager {
                 case 1:
                     Team newTeam = selectTeam();
                     if (newTeam != null) {
-                        player.setTeamName(newTeam.getName());
+                        player.setTeam(new Team(newTeam.getName()));
                         System.out.println("Team updated successfully!");
                     }
                     break;

@@ -1,4 +1,4 @@
-package com.hyperskill.data_models;
+package com.hyperskill.entity;
 
 public abstract class Person {
     private String firstName;

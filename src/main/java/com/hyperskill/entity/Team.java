@@ -1,9 +1,10 @@
-package com.hyperskill.data_models;
+package com.hyperskill.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hyperskill.FootballStatisticsDB;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.*;
@@ -18,9 +19,9 @@ import java.util.*;
 @Entity
 public class Team {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private UUID id;
+    private long id;
     private String name;
     private Set<Player> players = new HashSet<>();
     private Coach coach;
@@ -39,7 +40,7 @@ public class Team {
         this.players = playersTeam;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
@@ -241,7 +242,7 @@ public class Team {
 
     private boolean validatePlayersTeam(Set<Player> playersTeam, String teamName) {
         for (Player player : playersTeam) {
-            if (!player.getTeamName().equalsIgnoreCase(teamName)) {
+            if (!player.getTeam().getName().equalsIgnoreCase(teamName)) {
                 return false;
             }
         }

@@ -1,9 +1,9 @@
 package com.hyperskill.factory;
 
 import com.hyperskill.FootballStatisticsDB;
-import com.hyperskill.data_models.Match;
-import com.hyperskill.data_models.Player;
-import com.hyperskill.data_models.Team;
+import com.hyperskill.entity.Match;
+import com.hyperskill.entity.Player;
+import com.hyperskill.entity.Team;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -38,9 +38,9 @@ public class SimpleMatchFactory implements MatchFactory {
                 int goals = entry.getValue();
 
                 // Check which team the player belongs to
-                if (player.getTeamName().equals(homeTeam.getName())) {
+                if (player.getTeam().getName().equals(homeTeam.getName())) {
                     homeGoals += goals;
-                } else if (player.getTeamName().equals(awayTeam.getName())) {
+                } else if (player.getTeam().getName().equals(awayTeam.getName())) {
                     awayGoals += goals;
                 } else {
                     throw new IllegalArgumentException("Player " + player.getFirstName() + " " +
