@@ -1,8 +1,5 @@
 package com.hyperskill.data_models;
 
-import jakarta.persistence.Entity;
-
-@Entity
 public abstract class Person {
     private String firstName;
     private String lastName;
