@@ -6,7 +6,12 @@ plugins {
 }
 
 application {
-    mainClassName = 'com.hyperskill.Main'  // Make sure this is your main class path
+    mainClassName = 'com.hyperskill.Main'  // Original main class for 'run' task
+}
+
+// Configure Spring Boot main class for bootRun task
+springBoot {
+    mainClass = 'com.hyperskill.FootballStatisticsApplication'
 }
 
 group = 'com.hyperskill'
@@ -24,6 +29,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     runtimeOnly 'org.postgresql:postgresql'
 
     // Jackson for JSON processing
@@ -45,5 +51,6 @@ test {
 
 bootRun {
     // Enable interactive mode for the bootRun task
+    mainClass = 'com.hyperskill.FootballStatisticsApplication'
     standardInput = System.in
 }
