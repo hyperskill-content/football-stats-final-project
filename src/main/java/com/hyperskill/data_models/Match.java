@@ -1,13 +1,22 @@
 package com.hyperskill.data_models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 public class Match {
-    private final String id;
+    @Id
+    @GeneratedValue
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private UUID id;
     private Team homeTeam;
     private Team awayTeam;
     private int homeScore;
@@ -15,12 +24,9 @@ public class Match {
     private Map<Player, Integer> goalScorers;
     private LocalDateTime matchDate;
 
-    public Match() {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
-    }
+    public Match() {}
 
     public Match(Team homeTeam, Team awayTeam, LocalDateTime matchDate) {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = 0;
@@ -30,7 +36,6 @@ public class Match {
     }
 
     public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, LocalDateTime matchDate) {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;
@@ -41,7 +46,6 @@ public class Match {
 
     // New constructor that takes goalScorers
     public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Map<Player, Integer> goalScorers, LocalDateTime matchDate) {
-        this.id = UUID.randomUUID().toString(); // Auto-generate unique ID
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;
@@ -50,7 +54,7 @@ public class Match {
         this.matchDate = matchDate;
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
