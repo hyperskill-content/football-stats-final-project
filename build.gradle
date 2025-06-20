@@ -20,8 +20,9 @@ dependencies {
     // Spring Boot dependencies
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
+    
     runtimeOnly 'org.postgresql:postgresql'
 
     // Jackson for JSON processing
@@ -39,4 +40,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+bootRun {
+    // Enable interactive mode for the bootRun task
+    standardInput = System.in
 }
