@@ -117,7 +117,7 @@ public class TeamStatistics {
             return 0.0;
         }
 
-        int winMatches = TeamStatistics.amountMatchesTotal(team);
+        int winMatches = TeamStatistics.amountWinsTotal(team);
         int allMatches = TeamStatistics.amountMatchesTotal(team);
         return allMatches == 0 ? 0.0 : (double) winMatches / allMatches * 100;
     }
